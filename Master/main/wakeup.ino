@@ -1,5 +1,6 @@
 #include "hsv.h"
 #include "configuration.h"
+#include "utils.h"
 
 HSV_t wakeup_output_hsv[DEVICES];
 uint16_t wakeup_start_time[DEVICES];
@@ -7,7 +8,7 @@ uint16_t wakeup_start_time[DEVICES];
 long wakeup_frame_counter;
 double v;
 
-void wakeup_init(){
+fptr wakeup_init(){
   for (int i=0; i< DEVICES; i++){
     wakeup_start_time[i]=random(0, WAKEUP_MAX_RANDOM_T);
     
@@ -15,6 +16,8 @@ void wakeup_init(){
     wakeup_output_hsv[i].s = 1;
     wakeup_output_hsv[i].v = 0;
   }
+
+  return wakeup_do;
 }
 
 void wakeup_do(void){
