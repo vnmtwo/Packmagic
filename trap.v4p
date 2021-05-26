@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta40.dtd" >
    <PATCH nodename="C:\Projects\Volna\PackMagic\Firmware\trap.v4p" systemname="trap" filename="C:\Projects\Volna\PackMagic\Firmware\trap.v4p" scrollx="45" scrolly="0">
-   <BOUNDS type="Window" left="16920" top="2790" width="14160" height="15150">
+   <BOUNDS type="Window" left="38685" top="5745" width="14160" height="15150">
    </BOUNDS>
    <PACK Name="dx11" Version="1.3.1">
    </PACK>

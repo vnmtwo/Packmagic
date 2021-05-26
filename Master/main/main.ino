@@ -22,13 +22,16 @@ void select_program(){
     case 1:
       loop_function = wakeup_init();
       break;
+    case 2:
+      loop_function = wakeup_nap_init();
+      break;
   }
 
 }
 
 ICACHE_RAM_ATTR void handleInterrupt() {
   current_program+=1;
-  current_program = current_program%2;
+  current_program = current_program%3;
   program_changed = true;
 }
 
