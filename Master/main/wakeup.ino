@@ -9,6 +9,7 @@ long wakeup_frame_counter;
 double v;
 
 fptr wakeup_init(){
+  randomSeed(5);
   for (int i=0; i< DEVICES; i++){
     wakeup_start_time[i]=random(0, WAKEUP_MAX_RANDOM_T);
     
@@ -16,7 +17,8 @@ fptr wakeup_init(){
     wakeup_output_hsv[i].s = 1;
     wakeup_output_hsv[i].v = 0;
   }
-
+  
+  wakeup_frame_counter = 0;
   return wakeup_do;
 }
 
