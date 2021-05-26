@@ -25,13 +25,19 @@ void select_program(){
     case 2:
       loop_function = wakeup_nap_init();
       break;
+    case 3:
+      loop_function = applause_init();
+      break;
+    case 4:
+      loop_function = rhytm_init();
+      break;
   }
 
 }
 
 ICACHE_RAM_ATTR void handleInterrupt() {
   current_program+=1;
-  current_program = current_program%3;
+  current_program = current_program%5;
   program_changed = true;
 }
 
