@@ -39,4 +39,21 @@
 	#define RHYTM_COLOR_H		WAKEUP_BLUE_LIGHT_H
 	#define RHYTM_COLOR_S		1.0
 	#define RHYTM_SIN_DIV		2.0
+
+//crazy_time
+	#define CRAZY_TIME_COLOR_S		1.0
+	#define CRAZY_TIME_SPEED		0.02
+
+//countdown
+	#define COUNTDOWN_COLOR_H 		WAKEUP_BLUE_LIGHT_H
+	#define COUNTDOWN_COLOR_S		1.0
+	#define COUNTDOWN_LOW_V			0.3
+	#define COUNTDOWN_COUNT			10
+
+//dualogue
+	#define DIALOGUE_COLOR_H	WAKEUP_BLUE_LIGHT_H
+	#define DIALOGUE_COLOR_S	1.0
+	#define DIALOGUE_V_SPEED	0.02
+	#define DIALOGUE_MAX_V		COLOR_VALUE_LIMIT
+	#define DIALOGUE_PAUSE		90
 #endif

@@ -31,13 +31,19 @@ void select_program(){
     case 4:
       loop_function = rhytm_init();
       break;
+    case 5:
+      loop_function = crazy_time_init();
+      break;
+    case 6:
+      loop_function = countdown_init();
+      break;
   }
 
 }
 
 ICACHE_RAM_ATTR void handleInterrupt() {
   current_program+=1;
-  current_program = current_program%5;
+  current_program = current_program%7;
   program_changed = true;
 }
 
