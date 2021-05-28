@@ -57,4 +57,9 @@
 	#define DIALOGUE_V_SPEED	0.02
 	#define DIALOGUE_MAX_V		COLOR_VALUE_LIMIT
 	#define DIALOGUE_PAUSE		90	
+
+//lamp
+	#define LAMP_COLOR_H	0.08
+	#define LAMP_COLOR_S	1.0
+	#define LAMP_COLOR_V	COLOR_VALUE_LIMIT
 #endif

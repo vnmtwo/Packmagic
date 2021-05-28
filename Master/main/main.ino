@@ -40,13 +40,16 @@ void select_program(){
     case 7:
       loop_function = dialogue_init();
       break;
+    case 8:
+      loop_function = lamp_init();
+      break;
   }
 
 }
 
 ICACHE_RAM_ATTR void handleInterrupt() {
   current_program+=1;
-  current_program = current_program%8;
+  current_program = current_program%9;
   program_changed = true;
 }
 
