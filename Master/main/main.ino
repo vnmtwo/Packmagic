@@ -37,13 +37,16 @@ void select_program(){
     case 6:
       loop_function = countdown_init();
       break;
+    case 7:
+      loop_function = dialogue_init();
+      break;
   }
 
 }
 
 ICACHE_RAM_ATTR void handleInterrupt() {
   current_program+=1;
-  current_program = current_program%7;
+  current_program = current_program%8;
   program_changed = true;
 }
 
