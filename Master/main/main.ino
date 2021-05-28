@@ -43,13 +43,16 @@ void select_program(){
     case 8:
       loop_function = lamp_init();
       break;
+    case 9:
+      loop_function = ten_init();
+      break;
   }
 
 }
 
 ICACHE_RAM_ATTR void handleInterrupt() {
   current_program+=1;
-  current_program = current_program%9;
+  current_program = current_program%10;
   program_changed = true;
 }
 
