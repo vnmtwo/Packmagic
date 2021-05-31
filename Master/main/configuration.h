@@ -6,14 +6,23 @@
 	#define STAPSK  				"vnm159wifi"
 	#define REMOTE_PORT 			8888
 //buttons
-	#define BUTTON_PROGRAM01_PIN		16 //D0
+	#define BUTTON_PROGRAM01_PIN		16 //D0 !NO INTERRUPT
 	#define BUTTON_PROGRAM02_PIN		5 //D1
 	#define BUTTON_PROGRAM03_PIN		4 //D2
 	#define BUTTON_PROGRAM04_PIN		0 //D3
 	#define BUTTON_PROGRAM05_PIN		2 //D4
 	
-	#define BUTTON_PROGRAM05_PIN		14 //D5
-	
+	#define BUTTON_PROGRAM06_PIN		14 //D5
+  #define BUTTON_PROGRAM07_PIN    12 //D6
+  #define BUTTON_PROGRAM08_PIN    13 //D7
+  #define BUTTON_PROGRAM09_PIN    15 //D8 !PULLED TO GND 
+  #define BUTTON_PROGRAM10_PIN    3 //RX
+
+  #define BUTTON_X_PIN  1 //TX  
+  //button L pin is ADC
+
+  #define BUTTON_TIMEOUT 100 //ms
+  
 //base position program
 	#define BASE_COLOR_H 			0.15
 	#define BASE_COLOR_S			1.0
@@ -83,4 +92,8 @@
 	#define TEN_FIRSTLAMP_H_FLOAT_AMP		0.05
 	#define TEN_FIRSTLAMP_H_FLOAT_SIN_DIV	15.0 //must be float
 
+// l_program
+  #define L_PROGRAM_COLOR_H BASE_COLOR_H
+  #define L_PROGRAM_COLOR_S 0
+  #define L_PROGRAM_COLOR_V COLOR_VALUE_LIMIT
 #endif

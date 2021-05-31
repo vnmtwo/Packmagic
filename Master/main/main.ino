@@ -46,22 +46,138 @@ void select_program(){
     case 9:
       loop_function = ten_init();
       break;
+    case 10:
+      loop_function = x_program_init();
+      break;
+    case 11:
+      loop_function = l_program_init();
+      break;
   }
 
 }
 
-ICACHE_RAM_ATTR void handleInterrupt() {
-  current_program+=1;
-  current_program = current_program%10;
-  program_changed = true;
+long last_push = 0;
+
+void handleInterrupt01() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=0;
+    program_changed = true;
+  }
+}
+
+ICACHE_RAM_ATTR void handleInterrupt02() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=1;
+    program_changed = true;
+  }
+}
+
+ICACHE_RAM_ATTR void handleInterrupt03() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=2;
+    program_changed = true;
+  }
+}
+
+ICACHE_RAM_ATTR void handleInterrupt04() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=3;
+    program_changed = true;
+  }
+}
+
+ICACHE_RAM_ATTR void handleInterrupt05() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=4;
+    program_changed = true;
+  }
+}
+ICACHE_RAM_ATTR void handleInterrupt06() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=5;
+    program_changed = true;
+  }
+}
+ICACHE_RAM_ATTR void handleInterrupt07() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=6;
+    program_changed = true;
+  }
+}
+ICACHE_RAM_ATTR void handleInterrupt08() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=7;
+    program_changed = true;
+  }
+}
+ICACHE_RAM_ATTR void handleInterrupt09() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=8;
+    program_changed = true;
+  }
+}
+ICACHE_RAM_ATTR void handleInterrupt10() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=9;
+    program_changed = true;
+  }
+}
+
+ICACHE_RAM_ATTR void handleInterruptX() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=10;
+    program_changed = true;
+  }
+}
+
+void handleInterruptL() {
+  if (millis()>last_push+BUTTON_TIMEOUT){  
+    last_push = millis();
+    current_program=11;
+    program_changed = true;
+  }
 }
 
 void setup_buttons(){
-  pinMode(BUTTON_PROGRAM00_PIN, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM00_PIN), handleInterrupt, RISING);
+  pinMode(BUTTON_PROGRAM01_PIN, INPUT_PULLDOWN_16);
+  pinMode(BUTTON_PROGRAM02_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PROGRAM03_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PROGRAM04_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PROGRAM05_PIN, INPUT_PULLUP);
+
+  pinMode(BUTTON_PROGRAM06_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PROGRAM07_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PROGRAM08_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_PROGRAM09_PIN, INPUT);
+  pinMode(BUTTON_PROGRAM10_PIN, INPUT_PULLUP);
+
+  pinMode(BUTTON_X_PIN, INPUT_PULLUP);
+
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM02_PIN), handleInterrupt02, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM03_PIN), handleInterrupt02, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM04_PIN), handleInterrupt04, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM05_PIN), handleInterrupt05, RISING);
+
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM06_PIN), handleInterrupt06, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM07_PIN), handleInterrupt07, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM08_PIN), handleInterrupt08, RISING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM09_PIN), handleInterrupt09, FALLING);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PROGRAM10_PIN), handleInterrupt10, RISING);
+
+  attachInterrupt(digitalPinToInterrupt(BUTTON_X_PIN), handleInterruptX, RISING);
 }
-void setup() {
-  Serial.begin(115200);
+void setup() { 
   setup_buttons();   
   WiFi.mode(WIFI_STA);
   WiFi.begin(STASSID, STAPSK);
@@ -71,15 +187,38 @@ void setup() {
   select_program();
 }
 
+bool last_button01_state = true;
+
+void check_button01(){
+  bool t = digitalRead(BUTTON_PROGRAM01_PIN);
+  if (!t && last_button01_state)
+    handleInterrupt01();
+   last_button01_state = t;
+}
+
+bool last_button02_state = false;
+
+void check_buttonL(){
+  int t = analogRead(A0);
+  if (t<127 && last_button02_state)
+    handleInterruptL();
+  last_button02_state=(t>127);
+}
+
+
 unsigned long ts =0;
 void loop() {
   if (millis()-ts>30){
     ts = millis();
+
+    check_button01();
+    check_buttonL();
+    
     if (program_changed){
-      Serial.print("program changed "); Serial.println(current_program, DEC);
       select_program();
       program_changed = false;
     }
+    
     loop_function();
     
     Udp.beginPacket(remoteIP,REMOTE_PORT);
