@@ -21,7 +21,7 @@ fptr rhytm_init(){
 void rhytm_do(void){
   for (int i=0; i<DEVICES; i++){
     rhytm_output_hsv[i].v = COLOR_VALUE_LIMIT*0.5*(1+sin(rhytm_frame_counter/RHYTM_SIN_DIV));
-    ColorConverter::HsvToRgb(rhytm_output_hsv[i].h, rhytm_output_hsv[i].s, rhytm_output_hsv[i].v, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+    ColorConverter::HsvToRgb(rhytm_output_hsv[i].h, rhytm_output_hsv[i].s, rhytm_output_hsv[i].v, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);
   }
   rhytm_frame_counter++;
 }

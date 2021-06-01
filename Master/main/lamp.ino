@@ -16,6 +16,6 @@ fptr lamp_init(){
 
 void lamp_do(void){
   for (int i=0; i<DEVICES; i++){
-    ColorConverter::HsvToRgb(lamp_output_hsv[i].h, lamp_output_hsv[i].s, lamp_output_hsv[i].v, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+    ColorConverter::HsvToRgb(lamp_output_hsv[i].h, lamp_output_hsv[i].s, lamp_output_hsv[i].v, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);
   }
 }

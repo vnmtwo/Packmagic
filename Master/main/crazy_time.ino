@@ -22,7 +22,7 @@ fptr crazy_time_init(){
 void crazy_time_do(void){
   for (int i=0; i<DEVICES; i++){
     crazy_time_output_hsv[i].h += CRAZY_TIME_SPEED;
-    ColorConverter::HsvToRgb(crazy_time_output_hsv[i].h, crazy_time_output_hsv[i].s, crazy_time_output_hsv[i].v, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+    ColorConverter::HsvToRgb(crazy_time_output_hsv[i].h, crazy_time_output_hsv[i].s, crazy_time_output_hsv[i].v, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);
   }
   crazy_time_frame_counter++;
 }

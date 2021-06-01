@@ -2,8 +2,8 @@
 #define CONFIGURATION_H
 	#define DEVICES 				20
 	#define COLOR_VALUE_LIMIT 		0.8
-	#define STASSID 				"vnmhome"
-	#define STAPSK  				"vnm159wifi"
+	#define STASSID 				"packmagic"
+	#define STAPSK  				"volnavolna"
 	#define REMOTE_PORT 			8888
 //buttons
 	#define BUTTON_PROGRAM01_PIN		16 //D0 !NO INTERRUPT

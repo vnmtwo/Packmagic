@@ -44,8 +44,7 @@ void wakeup_nap_do(void){
       wakeup_nap_att=max(0.0, wakeup_nap_att-WAKEUP_NAP_SIN_ATT_SPEED);
     }
     
-    ColorConverter::HsvToRgb(wakeup_nap_output_hsv[i].h, wakeup_nap_output_hsv[i].s, wakeup_nap_output_hsv[i].v*m, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);    
-//    ColorConverter::HsvToRgb(wakeup_nap_output_hsv[i].h, wakeup_nap_output_hsv[i].s, min(1.0, max(0.0, wakeup_nap_output_hsv[i].v+m)), packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+    ColorConverter::HsvToRgb(wakeup_nap_output_hsv[i].h, wakeup_nap_output_hsv[i].s, wakeup_nap_output_hsv[i].v*m, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);    
   }
   wakeup_nap_frame_counter++;
 }

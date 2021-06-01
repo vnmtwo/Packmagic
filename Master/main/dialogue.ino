@@ -37,7 +37,7 @@ void dialogue_do(void){
             dialogue_pause_counter = dialogue_frame_counter+DIALOGUE_PAUSE;
           }
         }
-        ColorConverter::HsvToRgb(dialogue_output_hsv[i].h, dialogue_output_hsv[i].s, dialogue_output_hsv[i].v, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+        ColorConverter::HsvToRgb(dialogue_output_hsv[i].h, dialogue_output_hsv[i].s, dialogue_output_hsv[i].v, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);
       }
       break;
     case 1:
@@ -55,7 +55,7 @@ void dialogue_do(void){
             dialogue_pause_counter = dialogue_frame_counter+DIALOGUE_PAUSE;
           }
         }
-        ColorConverter::HsvToRgb(dialogue_output_hsv[i].h, dialogue_output_hsv[i].s, dialogue_output_hsv[i].v, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+        ColorConverter::HsvToRgb(dialogue_output_hsv[i].h, dialogue_output_hsv[i].s, dialogue_output_hsv[i].v, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);
       }
       break;
      case 3: 

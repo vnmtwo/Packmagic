@@ -36,7 +36,7 @@ void wakeup_do(void){
         }
       }
     }
-    ColorConverter::HsvToRgb(wakeup_output_hsv[i].h, wakeup_output_hsv[i].s, wakeup_output_hsv[i].v, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+    ColorConverter::HsvToRgb(wakeup_output_hsv[i].h, wakeup_output_hsv[i].s, wakeup_output_hsv[i].v, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);
   }
   wakeup_frame_counter++;
 }

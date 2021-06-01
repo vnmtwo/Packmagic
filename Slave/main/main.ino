@@ -1,41 +1,45 @@
-#define DEVICE_ID 0
-#define PIN 2
+#define DEVICE_ID 4
+#define PIN 5 //D1
 #define NUMPIXELS 25
-#define STASSID "vnmhome"
-#define STAPSK  "vnm159wifi"
-
-void ICACHE_RAM_ATTR espShow(uint8_t pin, uint8_t *pixels, uint32_t numBytes, boolean is800KHz);
+#define STASSID "packmagic"
+#define STAPSK  "volnavolna"
 
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
+#include <Adafruit_NeoPixel.h>
 
 unsigned int localPort = 8888;
 #define UDP_PACKET_SIZE 60
 uint8_t packetBuffer[UDP_PACKET_SIZE];
 WiFiUDP Udp;
 
-//GRB
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 uint8_t black[3] = {0,0,0};
 uint8_t blue[3] = {0,0,128};
 
-void led_begin(void) {
-  if(PIN >= 0) {
-    pinMode(PIN, OUTPUT);
-    digitalWrite(PIN, LOW);
+void showColor(uint8_t *pColor){
+  for (int i=0; i<NUMPIXELS; i++){
+    pixels.setPixelColor(i, *(pColor), *(pColor+1), *(pColor+2));
   }
+  pixels.show();
 }
 void setup() {
-  led_begin();
-  espShow(PIN, &(black[0]),NUMPIXELS*3, true);
+  pixels.begin();
+  pixels.clear();
+  pixels.show();
   
   WiFi.mode(WIFI_STA);
   WiFi.begin(STASSID, STAPSK);
   while (WiFi.status() != WL_CONNECTED) {
-    espShow(PIN, &(blue[0]),NUMPIXELS*3, true);
+    showColor(&blue[0]);
     delay(500);
-    espShow(PIN, &(black[0]),NUMPIXELS*3, true);
+    showColor(&black[0]);
+    delay(500);
   }
-
+  
+  WiFi.setAutoReconnect(true);
+  WiFi.persistent(true);
+  
   Udp.begin(localPort);
 }
 
@@ -43,6 +47,6 @@ void loop() {
   int packetSize = Udp.parsePacket();
   if (packetSize==UDP_PACKET_SIZE) {
     Udp.read(packetBuffer, UDP_PACKET_SIZE);
-    espShow(PIN, &(packetBuffer[DEVICE_ID*3]),NUMPIXELS*3, true);
+    showColor(&(packetBuffer[DEVICE_ID*3]));
   }
 }

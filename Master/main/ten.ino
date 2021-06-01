@@ -64,7 +64,7 @@ void ten_do(void){
         }
         break;
     }
-    ColorConverter::HsvToRgb(ten_output_hsv[i].h, ten_output_hsv[i].s, ten_output_hsv[i].v, packetBuffer[i*3+1], packetBuffer[i*3], packetBuffer[i*3+2]);
+    ColorConverter::HsvToRgb(ten_output_hsv[i].h, ten_output_hsv[i].s, ten_output_hsv[i].v, packetBuffer[i*3], packetBuffer[i*3+1], packetBuffer[i*3+2]);
   }
   ten_frame_counter++;
 }
