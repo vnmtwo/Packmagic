@@ -17,4 +17,4 @@ My part in this project:
 
 ## Additional features  
 
-- Light devices can get light program from any artnet source (light controller or software (f.e. resolume)
+- Light devices can get light program from any artnet source (light controller or software f.e. resolume) by wi-fi.
